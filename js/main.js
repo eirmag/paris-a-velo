@@ -135,10 +135,16 @@ document.fonts.ready.then(function(fontFaceSet) {
     beforePan: beforePan,
   }));
 
-  //panZoom.zoom(0.7);
+  //
   
-  panZoom.zoomAtPoint(0.7, {x: 1551, y: 888});
-  panZoom.pan({x:-650, y:-100});
+  var centerPoint = {x: 1551, y: 888};
+  var defaultPan = {x:-650, y:-100};
+  var fnCenter=function(){
+    panZoom.zoomAtPoint(0.7, centerPoint);
+  panZoom.pan(defaultPan);
+  };
+  fnCenter();
+  
 
   window.addEventListener("resize", e => {
     panZoom.resize();
@@ -157,9 +163,7 @@ document.fonts.ready.then(function(fontFaceSet) {
   });
   document.getElementById('mapControl__zoomReset').addEventListener('click', function(ev) {
     ev.preventDefault();
-    //panZoom.resetZoom();
-    panZoom.zoomAtPoint(1.1, {x: 1551, y: 888});
-    panZoom.pan({x:-850, y:-300});
+    panZoom.zoom(0.7);
     
   });
 
@@ -182,7 +186,7 @@ document.fonts.ready.then(function(fontFaceSet) {
   });
   document.getElementById('mapControl__panCenter').addEventListener('click', function(ev) {
     ev.preventDefault();
-    panZoom.center();
+    panZoom.pan(defaultPan);
   });
 
   containerElement.addEventListener('keyup', (event) => {

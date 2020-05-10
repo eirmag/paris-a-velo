@@ -188,10 +188,10 @@ abbr {
 
 svg#map {
   display: block;
-  width: 100%;
+  
   min-width: inherit;
   max-width: inherit;
-  height: 100%;
+  
   min-height: inherit;
   max-height: inherit;
   font-family: Work Sans, sans-serif;
@@ -324,6 +324,7 @@ svg#map text {
   position: absolute;
   left: 10px;
   font-size: .8rem;
+  z-index: 10;
 }
 
 .mapControl.mapControl--top {

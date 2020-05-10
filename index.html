@@ -88,10 +88,43 @@
       <button class="foldController" aria-label="Plier/déplier le panneau">
         ×
       </button>
-      <div id="mapControls" style="z-index:10">
-        <button id="mapControl__zoomPlus" aria-label="Zoom +">+</button>
-        <button id="mapControl__zoomMinus" aria-label="Zoom -">-</button>
-        <button id="mapControl__zoomReset">Initial</button>
+      <div class="mapControl mapControl--top mapControl--column">
+        <button id="mapControl__zoomPlus" class="zoomButton" aria-label="Zoom +">
+          <span aria-hidden>+</span>
+        </button>
+        <button id="mapControl__zoomMinus" class="zoomButton" aria-label="Zoom -">
+          <span aria-hidden>-</span>
+        </button>
+        <button id="mapControl__zoomReset"class="zoomButton" >
+          Initial
+        </button>
+      </div>
+      <div class="mapControl mapControl--bottom mapControl--cross">
+        <span class="cross__block cross__left">
+          <button id="mapControl__panLeft" class="panButton" aria-label="Gauche">
+            <span aria-hidden class="rotate90">↓</span>
+          </button>
+        </span>
+        <span class="cross__block cross__right">
+          <button id="mapControl__panRight" class="panButton" aria-label="Droite">
+            <span aria-hidden class="rotate90">↑</span>
+          </button>
+        </span>
+        <span class="cross__block cross__up">
+          <button id="mapControl__panUp" class="panButton" aria-label="Haut">
+            <span aria-hidden>↑</span>
+          </button>
+        </span>
+        <span class="cross__block cross__down">
+          <button id="mapControl__panDown" class="panButton" aria-label="Bas">
+            <span aria-hidden>↓</span>
+          </button>
+        </span>
+        <span class="cross__block cross__center">
+          <button id="mapControl__panCenter" class="panButton" aria-label="Centrer">
+            <span aria-hidden>⦿</span>
+          </button>
+        </span>
       </div>
       
       <div id="mapContainer">
