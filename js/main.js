@@ -125,7 +125,7 @@ document.fonts.ready.then(function(fontFaceSet) {
     mouseWheelZoomEnabled: true,
     preventMouseEventsDefault: true,
     zoomScaleSensitivity: 0.4,
-    minZoom: 1,
+    minZoom: 0.3,
     maxZoom: 6,
     fit: false,
     contain: true,
@@ -134,6 +134,11 @@ document.fonts.ready.then(function(fontFaceSet) {
     eventsListenerElement: null,
     beforePan: beforePan,
   }));
+
+  //panZoom.zoom(0.7);
+  
+  panZoom.zoomAtPoint(0.7, {x: 1551, y: 888});
+  panZoom.pan({x:-650, y:-100});
 
   window.addEventListener("resize", e => {
     panZoom.resize();
@@ -152,8 +157,10 @@ document.fonts.ready.then(function(fontFaceSet) {
   });
   document.getElementById('mapControl__zoomReset').addEventListener('click', function(ev) {
     ev.preventDefault();
-    panZoom.resetZoom();
-    panZoom.center();
+    //panZoom.resetZoom();
+    panZoom.zoomAtPoint(1.1, {x: 1551, y: 888});
+    panZoom.pan({x:-850, y:-300});
+    
   });
 
   // Pan controls
