@@ -138,7 +138,7 @@ document.fonts.ready.then(function(fontFaceSet) {
   //
   
   var centerPoint = {x: 1551, y: 888};
-  var defaultPan = {x:-650, y:-100};
+  var defaultPan = {x:-450, y:-50};
   var fnCenter=function(){
     panZoom.zoomAtPoint(0.7, centerPoint);
   panZoom.pan(defaultPan);
