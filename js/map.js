@@ -1,12 +1,16 @@
 // CONSTS AND CONFIG
 
 const timeValueElement = document.getElementById("time_value");
+const modeValueElement = document.getElementById("mode_value");
 const trajectoryElement = document.getElementById("trajectory");
 const trajectoryStartElement = document.getElementById("trajectory_start");
 const trajectoryEndElement = document.getElementById("trajectory_end");
 // const trajectoryListElement = document.getElementById("trajectory_list");
 const highlightAllPointsButton = document.getElementById("button__highlightAllPoints");
 const unlightAllPointsButton = document.getElementById("button__unlightAllPoints");
+const regularSplitButton = document.getElementById("button__regularSplit");
+const electricSplitButton = document.getElementById("button__electricSplit");
+
 const pointsGroup = document.getElementById("points");
 const linesGroup = document.getElementById("lines");
 const textGroup = document.getElementById("texts");
@@ -85,13 +89,15 @@ const trajectoryExtremities = new Proxy(trajectoryExtremitiesArray, {
 // change handlers
 const handleLineCountChange = () => {
   timeCount = 0;
-  activeLines.forEach(value => (timeCount += data.lines[value].time));
+  isRegular = regularSplitButton.disabled === true;
+  activeLines.forEach(value => (timeCount += (isRegular && data.lines[value].regularTime ? data.lines[value].regularTime : data.lines[value].time)));
 
   const hourCount = Math.floor(timeCount / 60)
   const timeDisplay = timeCount > 60 ?
     `${hourCount} heure${hourCount > 1 ? 's' : ''} ${timeCount % 60}` :
     timeCount
   timeValueElement.innerHTML = timeDisplay;
+  modeValueElement.innerHTML = isRegular ? "V&eacute;lo loisir" : "V&eacute;lo &agrave; assistance &eacute;lectrique";
 };
 
 const handlePointsCountChange = () => {
@@ -276,6 +282,21 @@ const disableAllLines = () => {
     const arrayToDisable = [...activeLinesArray]
     arrayToDisable.forEach((line) => unlightLine(line));
   }
+}
+
+//electric split is the default
+const activateElectricSplit = () => {
+  regularSplitButton.disabled = false;
+  redrawTexts(data.lines);
+  electricSplitButton.disabled = true;
+  handleLineCountChange();
+}
+
+const activateRegularSplit = () => {
+  electricSplitButton.disabled = false;
+  redrawTexts(data.lines, true);
+  regularSplitButton.disabled = true;
+  handleLineCountChange();
 }
 
 // DRAWING METHODS

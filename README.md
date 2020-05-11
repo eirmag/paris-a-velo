@@ -62,6 +62,7 @@ Chaque objet de ligne est composé comme suit :
       difficulty: 0,
       displayMin: true,
       time: 6,
+      regularTime: 8
       align: "top",
     }
 ```
@@ -76,6 +77,7 @@ Chaque objet de ligne est composé comme suit :
       displayMin: true,
       time: 6,
       times: { hard: 7, easy: 5 },
+      regularTimes: { hard: 20, easy: 9 },
       align: "top",
     },
 ```
@@ -85,10 +87,14 @@ Chacunes de ces propriétés doivent être définies :
 - `start` et `end` sont les noms exacts des points tels que définis dans l’objet `points` ;
 - `difficulty` renseigne la difficulté : `0` pour un chemin plat, `1` pour une montée entre le point C et D, `-1` pour une descente (il y a quelques imprécisions dans le code qui font que les valeurs sont parfois prises à l’envers, c'est un bug à résoudre—si ça marche pas du premier coup ça marchera en inversant la valeur) ;
 - `displayMin` spécifie si “min” est ajouté après le chiffre de la durée _par défaut sur `true`_ ;
-- `time` définit le temps de trajet affiché pour terrain plat et utilisé pour tous les calculs d’itinéraires ;
+- `time` définit le temps de trajet affiché pour terrain plat par d&eacute;faut (V&eacute;lo &agrave; assistance &eacute;lectrique) et utilisé pour tous les calculs d’itinéraires ;
 - `times` est un objet qui n’est nécessaire que pour les trajets en montée/descente, il contient deux valeurs :
-    * `hard` la durée du trajet en montée ;
-    * `easy` la durée du trajet en descente ;
+    * `hard` la durée du trajet en montée en v&eacute;lo &agrave; assistance &eacute;lectrique ;
+    * `easy` la durée du trajet en descente v&eacute;lo &agrave; assistance &eacute;lectrique ;
+- `regularTime` définit le temps de trajet affiché pour terrain plat pour un v&eacute;lo loisir) et utilisé pour tous les calculs d’itinéraires ;
+- `regularTimes` est un objet qui n’est nécessaire que pour les trajets en montée/descente, il contient deux valeurs :
+    * `hard` la durée du trajet en montée en v&eacute;lo loisir ;
+    * `easy` la durée du trajet en descente v&eacute;lo loisir ;
 - `align` précise si le texte de la durée est affiché au dessus ou au dessous de la ligne (ne marche que pour les trajets plats) _par défaut sur "top"_.
 
 L’affichage des points et des lignes ne se fera pas complètement si les données ne sont pas bien renseignées.

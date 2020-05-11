@@ -31,6 +31,16 @@
         <h1 class="size-big weight-extrabold">Temps de trajets à vélo à Sophia & petite couronne 🚲</h1>
       </div>
       <div class="tools">
+         <p class="size-small">
+            Les temps par d&eacute;faut sont affich&eacute;s pour des VAE. Vous pouvez voir le temps estim&eacute; pour du v&eacute;lo loisir.
+            <br>
+            <button id="button__electricSplit" class="size-smaller link" disabled="true" onclick="activateElectricSplit();">
+              temps VAE
+            </button>
+            <button id="button__regularSplit" class="size-smaller link" onclick="activateRegularSplit();">
+              temps loisir
+            </button>
+          </p>
         <p class="size-small">
           Clique sur les pastilles des lieux pour afficher ou masquer leur nom.
           <br>
@@ -55,6 +65,11 @@
           <strong>
             <span id="time_value">0</span>
             <abbr title="minutes">min</abbr>
+          </strong>
+          <br />
+          <small>Mode&nbsp;: </small>
+          <strong>
+            <span id="mode_value">Velo electrique</span>
           </strong>
           <br />
           <button class="size-smaller link" onclick="trajectoryExtremities.reverse();">

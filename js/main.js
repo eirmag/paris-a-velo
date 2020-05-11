@@ -29,6 +29,62 @@ svgElement.addEventListener("click", event => {
   console.info(`Firefox only: clic au point {x: ${event.layerX}, y: ${event.layerY}}`);
 });
 
+const redrawTexts = (lines, isRegular) => {
+  while (textGroup.firstChild) { textGroup.removeChild(textGroup.firstChild); }
+  lines.forEach((line, index) => {
+    // draw map elements
+    if (line.difficulty === 0) {
+      var iTime = isRegular && line.regularTime ? line.regularTime : line.time;
+      drawNumber({
+        start: data.points[line.start],
+        end: data.points[line.end],
+        number: iTime,
+        align: line.align,
+        displayMin: line.displayMin,
+        line: index,
+      });
+    } else {
+      var iTimes = isRegular && line.regularTimes ? line.regularTimes : line.times;
+      drawDoubleNumber({
+        start: data.points[line.start],
+        end: data.points[line.end],
+        numbers: {
+          top: line.difficulty > 0 ? iTimes.hard : iTimes.easy,
+          bottom: line.difficulty > 0 ? iTimes.easy : iTimes.hard,
+        },
+        displayMin: line.displayMin,
+        line: index,
+      });
+    }
+  });
+}
+
+const drawLines = (lines) => {
+  lines.forEach((line, index) => {
+    // populate pointsMap object for contiguous screening
+    pointsMap[line.start].push(index);
+    pointsMap[line.end].push(index);
+
+    // draw map elements
+    if (line.difficulty === 0) {
+      drawLine({
+        start: data.points[line.start],
+        end: data.points[line.end],
+        index: index,
+      });
+    } else {
+      drawDoubleLine({
+        start: data.points[line.start],
+        end: data.points[line.end],
+        difficulty: line.difficulty,
+        index: index,
+      });
+    }
+  });
+
+  redrawTexts(lines);
+}
+
 document.fonts.ready.then(function(fontFaceSet) {
 
   // POPULATE MAP WITH POINTS AND LINES
@@ -50,45 +106,7 @@ document.fonts.ready.then(function(fontFaceSet) {
   }
 
   // lines
-  data.lines.forEach((line, index) => {
-    // populate pointsMap object for contiguous screening
-    pointsMap[line.start].push(index);
-    pointsMap[line.end].push(index);
-
-    // draw map elements
-    if (line.difficulty === 0) {
-      drawNumber({
-        start: data.points[line.start],
-        end: data.points[line.end],
-        number: line.time,
-        align: line.align,
-        displayMin: line.displayMin,
-        line: index,
-      });
-      drawLine({
-        start: data.points[line.start],
-        end: data.points[line.end],
-        index: index,
-      });
-    } else {
-      drawDoubleNumber({
-        start: data.points[line.start],
-        end: data.points[line.end],
-        numbers: {
-          top: line.difficulty > 0 ? line.times.hard : line.times.easy,
-          bottom: line.difficulty > 0 ? line.times.easy : line.times.hard,
-        },
-        displayMin: line.displayMin,
-        line: index,
-      });
-      drawDoubleLine({
-        start: data.points[line.start],
-        end: data.points[line.end],
-        difficulty: line.difficulty,
-        index: index,
-      });
-    }
-  });
+  drawLines(data.lines);
 
   // MAP BOX
   var beforePan;

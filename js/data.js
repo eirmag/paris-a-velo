@@ -20,8 +20,10 @@ const data = {
       end: "Gare SNCF Juans-les-Pin",
       difficulty: 0, //-1, 1
       displayMin: true, //false
-      time: 5,
-      //times: { hard: 9, easy: 7 },
+      time: 5, //default time
+      //times: { hard: 9, easy: 7 }, //default with difficulty
+      regularTime: 5,
+      regularTimes: { hard: 9, easy: 7},
       align: "top", //bottom
     },
     {
@@ -186,6 +188,8 @@ const data = {
       displayMin: true, //false
       time: 15,
       times: { hard: 20, easy: 15 },
+      regularTime: 30,
+      regularTimes: { hard: 50, easy: 25},
       align: "top", //bottom
     },
     {
@@ -229,7 +233,7 @@ const data = {
       difficulty: 0, //-1, 1
       displayMin: true, //false
       time: 15,
-      times: { hard: 20, easy: 15 },
+      regularTime: 50,
       align: "top", //bottom
     },
 
