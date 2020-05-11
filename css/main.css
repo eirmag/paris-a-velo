@@ -240,7 +240,7 @@ svg#map {
 }
 
 .line__regular {
-  stroke: #399;
+  stroke: rgb(37, 172, 14);
 }
 
 .line__hard {
@@ -306,17 +306,17 @@ svg#map text {
 .numberText {
   fill: #333;
   stroke: rgba(255, 255, 255, .5);
-  stroke-width: 3px;
+  stroke-width: 4px;
   paint-order: stroke;
-  font-size: .75rem;
+  font-size: 1.25rem;
 }
 
 .numberText.numberText--bottom {
-  font-size: .66rem;
+  font-size: 1rem;
 }
 
 .numberText.numberText--top {
-  font-size: .66rem;
+  font-size: 1rem;
 }
 
 /* Map controls */

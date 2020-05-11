@@ -16,10 +16,10 @@ const pointZonesGroup = document.getElementById("pointZones");
 const pointRadius = 6;
 const zonePointRadius = 18;
 const zoneLineWidth = 20;
-const singleLineWidth = 3;
-const doubleLineWidth = 2.5;
-const doubleLineGap = 2;
-const arrowLength = 4;
+const singleLineWidth = 6;
+const doubleLineWidth = 3.5;
+const doubleLineGap = 3;
+const arrowLength = 5;
 var activePointsArray = new Array();
 var activeLinesArray = new Array();
 var trajectoryExtremitiesArray = new Array();
@@ -545,7 +545,7 @@ const drawDoubleNumber = ({ start, end, numbers, displayMin, line }) => {
     x: lineCenter.x,
     y: lineCenter.y,
     "text-anchor": "start",
-    transform: `${rotateTransform} translate(4 -5)`,
+    transform: `${rotateTransform} translate(4 -10)`,
     class: "numberText numberText--top",
   });
   setAttributes(newText2, {
@@ -553,7 +553,7 @@ const drawDoubleNumber = ({ start, end, numbers, displayMin, line }) => {
     x: lineCenter.x,
     y: lineCenter.y,
     "text-anchor": "end",
-    transform: `${rotateTransform} translate(-4 12)`,
+    transform: `${rotateTransform} translate(-4 18)`,
     class: "numberText numberText--bottom",
   });
 
